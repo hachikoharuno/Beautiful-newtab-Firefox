@@ -22,4 +22,4 @@ To avoid problems with the font, the font must be installed in the San Francisco
 ### Conclusion
 This project was created for personal use, but if you liked it and would like to use it, but you have comments or suggestions, then you can open an issue and let me know about it, or you can simply fork this project and use it in your work.
 
-Tested only of Linux!
+Tested only on Linux!
