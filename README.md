@@ -11,7 +11,7 @@ There are a lot of beautiful Firefox themes available online, but few of them ch
 ### Requirements!
 The position of the `svg.context-properties.content.enabled` parameter in about:config must be `true`
 
-To avoid problems with the font, the font must be installed in the San Francisco browser
+To avoid problems with the font, the font must be installed in the browser - San Francisco.
 
 ### Installation
 1.Download the archive from the releases and unpack it at `mozilla/firefox/firefox-profile-directory/chrome`
