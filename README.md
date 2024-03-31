@@ -19,6 +19,8 @@ To avoid problems with the font, the font must be installed in the browser - San
 2.If you already have themes installed, simply add the following line to the `userContent.css` file: `@import url('newtab/new_tab.css');`
   
   If you are installing this theme for the first time, then download this file from releases and place it in the chrome folder
+
+  and then enable `toolkit.legacyUserProfileCustomizations.stylesheets` in `about:config`
 ### Conclusion
 This project was created for personal use, but if you liked it and would like to use it, but you have comments or suggestions, then you can open an issue and let me know about it, or you can simply fork this project and use it in your work.
 
