@@ -202,7 +202,14 @@ button, input {
 .home-section .section .selector {
   border: none !important;
   box-shadow: 3px 10px 15px rgb(0 0 0 / 20%) !important;
+  background: url("icons/down.svg") right no-repeat !important;
+  background-origin: content-box !important;
 }
+
+.home-section .external-link {
+  text-decoration: none !important;
+}
+
 
 .toggle-button {
   transform: scale(1.4) !important;
@@ -463,7 +470,7 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     }
     
 .compact-cards .card-outer .card-context>.card-context-icon {
-    fill: var(--newtab-wordmark-color) !important;
+    fill: var(--newtab-text-primary-color) !important;
     opacity: 0.7 !important;
     /*filter: drop-shadow( 0px 1px 0px var(--contrast-color)) !important;*/
     }
