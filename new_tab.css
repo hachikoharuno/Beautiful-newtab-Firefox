@@ -204,7 +204,10 @@ button, input {
   box-shadow: 3px 10px 15px rgb(0 0 0 / 20%) !important;
   background: url("icons/down.svg") right no-repeat !important;
   background-origin: content-box !important;
+  background-color: #ffffff1e !important;
+  border-radius: 6px !important;
 }
+
 
 .home-section .external-link {
   text-decoration: none !important;
@@ -242,12 +245,6 @@ button, input {
 
   .home-section .section .sponsored-checkbox:checked {
   background-color: #2186fb !important;
-}
-
-.home-section .section .selector {
-  background-color: #ffffff1e !important;
-  border-radius: 6px !important;
-  width: 85px !important;
 }
 
 .customize-menu .close-button:hover {
