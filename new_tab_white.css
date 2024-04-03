@@ -135,15 +135,10 @@ background-color: transparent !important;
     } */
 
 .search-wrapper .logo-and-wordmark .wordmark {
-  background: url("chrome://branding/content/firefox-wordmark.svg") no-repeat center center;
-  background-size: auto;
-  -moz-context-properties: fill;
-  display: inline-block;
-  fill: var(--newtab-wordmark-color);
-  margin-inline-start: 16px;
   width: 190px !important;
   opacity: 80% !important;
   fill:#20123A !important;
+  margin-inline-start: 0 !important; 
 }
 
 /* Контекстное меню */

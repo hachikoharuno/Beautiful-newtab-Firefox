@@ -127,6 +127,7 @@ background-color: transparent !important;
   width: 190px !important;
   opacity: 80% !important;
   fill:#fbfbfe !important;
+  margin-inline-start: 0 !important; 
 }
  
 /* Контекстное меню */
