@@ -435,7 +435,7 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
 */
     
 .collapsible-section{
-        margin-left: -12px !important;
+        margin-left: unset !important;
     }
 
     
