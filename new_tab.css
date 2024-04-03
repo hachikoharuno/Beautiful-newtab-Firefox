@@ -95,6 +95,20 @@ main {
   background-image: url("icons/settings-newtab.svg") !important;
 }
 
+.icon.icon-settings:active {
+opacity: 100% !important;
+background-color: transparent !important;
+}
+
+/*Затемнение иконок*/
+.top-site-outer .rich-icon:active{
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2) !important;
+}
+
+.ds-card .meta:active{
+  box-shadow: inset 0 0 0 2000px rgba(225, 225, 225, 0.05) !important;
+}
+
 :root {
 --newtab-element-active-color: #ffffff1e !important;
 }
@@ -114,7 +128,6 @@ main {
   opacity: 80% !important;
   fill:#fbfbfe !important;
 }
-
  
 /* Контекстное меню */
     
@@ -128,7 +141,13 @@ main {
     background-blend-mode: overlay;
     display: flex;
     font-size: unset !important;
+    line-height: 25px !important;
     }
+    
+.context-menu > ul > li > a:is(:focus, :hover), .context-menu > ul > li > button:is(:focus, :hover) {
+  border-radius: 10px !important;
+  background: #ffffff1e !important;
+}
     
   .context-menu > ul > li > a, .context-menu > ul > li > button {
   line-height: unset !important;
@@ -208,6 +227,9 @@ button, input {
   border-radius: 6px !important;
 }
 
+.home-section .section .selector:hover{
+background-color: #ffffff34 !important;
+}
 
 .home-section .external-link {
   text-decoration: none !important;
@@ -268,6 +290,20 @@ button, input {
     backdrop-filter: blur(33px);
     background-blend-mode: overlay;
     height: auto !important;
+}
+
+.search-handoff-button .fake-textbox { 
+text-align: center !important;
+padding-inline-start: 0px !important;
+}
+
+.search-wrapper .search-handoff-button, .search-wrapper input {
+padding-inline-start: 0px !important;
+padding-inline-end: 0px !important;
+}
+
+body {
+  --newtab-search-icon: url("chrome://global/skin/icons/search-glass.svg") !important;
 }
     
 @supports -moz-bool-pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"){
@@ -387,7 +423,7 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     }
     
 .top-site-outer:is(:focus-within) .title, .card-outer:is(.active,:focus-within) .card{
-    text-decoration: underline !important;
+    text-decoration: unset !important;
     }
      
 .top-site-outer .context-menu-button {
@@ -399,6 +435,8 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     border-radius: 80px !important;
     fill: var(--newtab-text-primary-color) !important;
     background-image: url("icons/more.svg") !important;
+    transform: scale(1.4) !important;
+    box-shadow: unset !important; 
     }
     
 .top-site-outer .context-menu-button:is(:hover, :focus) {
@@ -423,10 +461,12 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
 
 .card-outer > a {
   color: auto !important;
+  text-decoration: none !important;
 }
 
 .outer-wrapper a {
   color: auto !important;
+  text-decoration: none !important;
 }
 
 :root[lwt-newtab-brighttext] {
@@ -481,6 +521,8 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     border-color: transparent !important;
     transition-delay: 0ms !important;
     background-image: url("icons/more.svg") !important;
+    box-shadow: unset !important; 
+    transform: scale(1.4) !important;
     }
     
     .card-outer .context-menu-button {
@@ -522,6 +564,8 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
   fill: var(--newtab-text-primary-color) !important;
   transition-delay: 0ms !important;
   background-image: url("icons/more.svg") !important;
+  box-shadow: unset !important; 
+  transform: scale(1.4) !important;
 }
 }
 
@@ -585,6 +629,14 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
   border-color: transparent !important;
   border-radius: 8px !important;
   box-shadow: 0 10px 15px rgb(0 0 0 / 20%) !important;
+}
+
+.button, .actions button:hover{
+background-color: #ffffff34 !important;
+}
+
+.button, .actions button:active{
+background-color: #ffffff3f !important;
 }
 
 .modal-overlay {
