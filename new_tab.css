@@ -1,13 +1,6 @@
 @import url('new_tab_white.css');
 @-moz-document url(chrome://browser/content/browser.xul), url(about:newtab), url(about:home){
-   
 
-    .home-section .section .sponsored-checkbox:checked {
-  -moz-context-properties: fill;
-  background: url("icons/checkbox.svg") center no-repeat !important;
-  background-color: #2186fb !important;
-}
-   
     @media (prefers-color-scheme: dark){
     
        :root {
@@ -93,11 +86,12 @@ main {
   transform: scale(1.4) !important;
   fill: var(--newtab-text-primary-color) !important;
   background-image: url("icons/settings-newtab.svg") !important;
+  transition: all 0.05s !important;
 }
 
 .icon.icon-settings:active {
-opacity: 100% !important;
 background-color: transparent !important;
+filter: invert(20%) !important;
 }
 
 /*Затемнение иконок*/
@@ -105,7 +99,30 @@ background-color: transparent !important;
   box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.17) !important;
 }
 
-.ds-card .meta:active{
+.top-site-outer .rich-icon{
+  transition: all 0.1s !important;
+}
+
+/*Анимация нажатия*/
+/*
+.top-site-outer .top-site-inner > a:active {
+  transform: scale(0.96) !important;
+}
+
+*/
+
+
+.top-site-outer .top-site-inner > a {
+  transition: all 0.1s !important;
+  width: fit-content !important;
+  padding: unset !important;
+}
+
+.top-site-outer .top-site-inner {
+  padding: 20px 16px 4px !important;
+}
+
+.ds-card .meta:hover{
   box-shadow: inset 0 0 0 2000px rgba(225, 225, 225, 0.05) !important;
 }
 
@@ -115,6 +132,7 @@ background-color: transparent !important;
 
 .personalize-button {
   padding: 10px !important;
+  transition: all 0.05s !important;
 }
 
 /* .search-inner-wrapper { display: none !important; } */
@@ -155,6 +173,8 @@ background-color: transparent !important;
   font-weight: normal !important;
   font-family: -apple-system !important;
   color: rgba(255,255,255,0.8) !important;
+  transition: all 0.2s !important;
+  border-radius: 10px !important;
 }
     
   .context-menu > ul > li.separator {
@@ -221,11 +241,12 @@ button, input {
 
 .home-section .section .selector {
   border: none !important;
-  box-shadow: 3px 10px 15px rgb(0 0 0 / 20%) !important;
+  box-shadow: 6px 6px 8px rgb(0 0 0 / 15%) !important; 
   background: url("icons/down.svg") right no-repeat !important;
   background-origin: content-box !important;
   background-color: #ffffff1e !important;
   border-radius: 6px !important;
+  transition: all 0.05s !important;
 }
 
 .home-section .section .selector:hover{
@@ -234,11 +255,16 @@ background-color: #ffffff34 !important;
 
 .home-section .external-link {
   text-decoration: none !important;
+  transition: all 0.05s !important;
+  color: var(--text-unselected) !important;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5) !important;
+  fill: var(--text-unselected) !important;
 }
 
 
 .toggle-button {
   transform: scale(1.4) !important;
+  transition: all 0.05s !important;
 }
 
 /* переключатели */
@@ -259,26 +285,48 @@ background-color: #ffffff34 !important;
   --toggle-dot-transform-x: calc(var(--toggle-width) - 1 * var(--toggle-dot-margin) - var(--toggle-dot-width)) !important;
   }
     
-  .customize-menu .close-button {
-  box-shadow: 3px 10px 15px rgb(0 0 0 / 20%) !important;
+.customize-menu .close-button {
+  box-shadow: 0 0px 15px rgb(0 0 0 / 15%) !important;
   font-weight: unset !important;
   border-radius: 10px !important;
   background-color: #ffffff1e !important;
+  transition: all 0.05s !important;
 }
 
-  .home-section .section .sponsored-checkbox:checked {
+.home-section .section .sponsored-checkbox:checked {
+  -moz-context-properties: fill;
+  background: url("icons/checkbox.svg") center no-repeat !important;
   background-color: #2186fb !important;
+}
+
+.home-section .section .sponsored-checkbox:checked:hover {
+  -moz-context-properties: fill;
+  background: url("icons/checkbox.svg") center no-repeat !important;
+  background-color: #429aff !important;
+}
+
+.home-section .section .sponsored-checkbox:checked:active {
+  -moz-context-properties: fill;
+  background: url("icons/checkbox.svg") center no-repeat !important;
+  background-color: #006be5 !important;
+}
+   
+.home-section .section .sponsored-checkbox:hover {
+  background-color: #ffffff34 !important;
 }
 
 .customize-menu .close-button:hover {
   background-color: #ffffff30 !important;
 }
 
+.home-section .external-link:hover{
+color: var(--text-selected) !important;
+fill: var(--text-selected) !important;
+}
 
 /* Панель поиска */
     
 .search-inner-wrapper {
-
     display: flex !important;
     margin-top: 16px !important;
     outline: none !important;
@@ -291,6 +339,10 @@ background-color: #ffffff34 !important;
     backdrop-filter: blur(33px);
     background-blend-mode: overlay;
     height: auto !important;
+}
+
+.search-handoff-button .fake-editable {
+  display: none !important;
 }
 
 .search-handoff-button .fake-textbox { 
@@ -418,10 +470,16 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     background-color: color-mix(in srgb, var(--newtab-pinnedsites-background)80%, var(--newtab-wordmark-color)) !important;
     }
     
+ /* Добавляет выделение при наведение в последних действиях*/  
+   
 .top-site-outer:is(:focus-within) .tile, .card-outer:is(.active,:focus-within) .card{
-    background-color: color-mix(in srgb, var(--newtab-pinnedsites-background)80%, var(--newtab-wordmark-color)) !important;
+    background-color: transparent !important;
     box-shadow: none !important;
     }
+    
+.compact-cards .card-outer .card-details {
+  padding: 12px 4px !important;
+}
     
 .top-site-outer:is(:focus-within) .title, .card-outer:is(.active,:focus-within) .card{
     text-decoration: unset !important;
@@ -438,6 +496,7 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     background-image: url("icons/more.svg") !important;
     transform: scale(1.4) !important;
     box-shadow: unset !important; 
+    width: 30px !important;
     }
     
 .top-site-outer .context-menu-button:is(:hover, :focus) {
@@ -450,15 +509,13 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
 /* -------------------------- Последние действия --------------------------- */
     
 .card-outer .card {
-    filter: saturate(140%) !important;
     border-radius: 16px !important;
-    background-color: rgba(20, 25, 40, 0.6)  !important;   
+    background-color: transparent !important;   
     position: relative;
-    box-shadow: 0 10px 15px rgb(0 0 0 / 20%) !important;  
-    backdrop-filter: blur(33px);
+    box-shadow: unset !important;  
     height: auto !important;
+    transition: all 0.2s !important;
 }
-
 
 .card-outer > a {
   color: auto !important;
@@ -468,6 +525,12 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
 .outer-wrapper a {
   color: auto !important;
   text-decoration: none !important;
+  transition: all 0.2s !important;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.outer-wrapper a:hover{
+color: var(--text-selected) !important;
 }
 
 :root[lwt-newtab-brighttext] {
@@ -475,20 +538,66 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
 }
 
 .compact-cards .card-outer .card-context {
-  background-color: var(--newtab-background-color-secondary);
-  border-radius: 16px;
-  clip-path: inset(-1px -1px 4px);
-  height: 32px;
-  width: 32px;
-  padding: 8px;
   top: 108px !important;
   inset-inline-end: 3px !important;
-  inset-inline-start: auto;
+  background-color: transparent !important;
+  background: transparent !important;
+  box-shadow: 0 10px 15px rgb(0 0 0 / 20%) !important;
 }
     
+   /*Настройка изображения сайта*/ 
+    
 .compact-cards .card-outer .card-preview-image-outer { 
-    border-radius: 16px 16px 0 0 !important; 
+  box-shadow: 0 10px 15px rgb(0 0 0 / 20%) !important;
+  height: 132px !important;
+  border-radius: 15px 15px 15px 15px !important;
+  backdrop-filter: blur(33px);
+  background-color: rgba(20, 25, 40, 0.2)  !important;
+  transition: all 0.2s !important;
+}
+
+   /*Отключение выделения сайта*/ 
+.top-site-outer:is(:hover, :focus, :active, :focus-within, :visited, :focus-visible, :target) .tile, .card-outer:is(:hover, :focus, :active, :focus-within, :visited, :focus-visible, :target) .card{
+    background-color: transparent !important;
     }
+    
+    .compact-cards .card-outer .card-text .card-title, .compact-cards .card-outer .card-text:not(.no-description) .card-title {
+  color: var(--newtab-text-primary-color) !important;
+}
+    
+     /*Анимация нажатия*/ 
+/*
+.card-outer:hover .card{
+  transform: scale(0.96) !important;
+}
+*/
+.compact-cards .card-outer .card-preview-image-outer:hover{
+ /* box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.17) !important;*/
+  background-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.card-outer .card-preview-image-outer .card-preview-image.loaded:hover {
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.17) !important;
+}
+
+.card-outer .card-preview-image-outer .card-preview-image.loaded {
+  transition: all 0.2s !important;
+}
+
+/*Позиция описания*/ 
+.ds-highlights .section .section-list .card-outer .card-host-name {
+  line-height: 42px!important;
+  margin-bottom: -50px !important;
+  opacity: 80% !important;
+}
+/*Тень описания*/ 
+.ds-highlights .section .section-list .card-outer .card-title {
+ text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5) !important;
+}
+/*Отображение иконок*/ 
+.compact-cards .card-outer .card-context {
+  display: none !important;
+}
     
 .ds-highlights .section .section-list .card-outer .card-host-name {
     text-shadow: 1px -1px 2px color-mix(in srgb, var(--contrast-color) 60%, transparent) !important;
@@ -504,7 +613,7 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     --newtab-primary-action-background: blue !important;
     color: var(--newtab-text-primary-color) !important;
     text-shadow: 1px -1px 2px color-mix(in srgb, var(--contrast-color) 60%, transparent) !important;
-    text-decoration: underline !important;
+    text-decoration: none !important;
     }
     
 .compact-cards .card-outer .card-context>.card-context-icon {
@@ -530,6 +639,16 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
   box-shadow: unset !important;
 }
 
+.sections-list .section-empty-state {
+    background-color: rgba(20, 25, 40, 0.6)  !important;   
+    border-radius: 15px !important;
+    backdrop-filter: blur(33px);
+    font-family: -apple-system !important;
+    font-weight: normal !important;
+    box-shadow: 0 0px 15px rgb(0 0 0 / 35%) !important;
+    height: 200px !important;
+    border-color: transparent !important;
+}
 
 /* Рекомендации */
 
@@ -540,6 +659,7 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     backdrop-filter: blur(33px);
     height: auto !important;
     border-radius: 0 0 16px 16px !important;
+    transition: all 0.2s !important;
 }
 
 .ds-onboarding-container:not(.placeholder), .ds-card-grid .ds-card:not(.placeholder) {
@@ -575,13 +695,14 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
 }
 
 .outer-wrapper a {
-  color: var(--newtab-text-primary-color) !important;
+  color: var(--text-unselected) !important;
 }
 
 :root {
   --newtab-primary-element-active-color: var(--newtab-text-primary-color) !important;
   --newtab-primary-action-background: transparent !important;
   --newtab-background-color: unset !important;
+  --newtab-wordmark-color: unset !important;
 }
 
 
@@ -589,6 +710,19 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
 
 /* Режим редактирования */
 
+.a11y-link-button {
+  color: var(--text-unselected) !important;
+  transition: all 0.05s !important;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.a11y-link-button:is(:hover, :focus, :active, :focus-within, :visited, :focus-visible, :target, :before){
+text-decoration: none !important;
+}
+
+.a11y-link-button:hover{
+color: var(--text-selected) !important;
+}
 
 .modalOverlayOuter {
     background-color: rgba(20, 25, 40, 0.4)  !important;   
@@ -611,6 +745,14 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
   border-color: transparent !important;
   box-shadow: 0 10px 15px rgb(0 0 0 / 20%) !important;
   border-radius: 8px !important;
+  transition: all 0.05s !important;
+  outline-color: transparent !important;
+}
+
+.topsite-form .form-wrapper input[type="text"]:focus {
+  outline: 4px  !important;
+  outline-style: solid !important;
+  outline-color: rgba(60, 135, 235, 0.7) !important;
 }
 
 .actions {
@@ -629,7 +771,8 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
   background-color: #ffffff1e !important;
   border-color: transparent !important;
   border-radius: 8px !important;
-  box-shadow: 0 10px 15px rgb(0 0 0 / 20%) !important;
+  box-shadow: 0 0px 15px rgb(0 0 0 / 15%) !important;  
+  transition: all 0.05s !important;
 }
 
 .button, .actions button:hover{
@@ -649,6 +792,8 @@ background-color: #ffffff3f !important;
 :root{
   --newtab-pinnedsites-background: color-mix(in srgb, white 14%, transparent) ;
   --newtab-pinnedsites-position-top: 0px ;
+  --text-selected: rgba(225, 225, 225, 1);
+  --text-unselected: rgba(176, 176, 176, 1);
 }
 }
 
