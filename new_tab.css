@@ -1,4 +1,5 @@
 @import url('new_tab_white.css');
+@import url('private.css');
 @-moz-document url(chrome://browser/content/browser.xul), url(about:newtab), url(about:home){
 
     @media (prefers-color-scheme: dark){
@@ -7,6 +8,12 @@
   --newtab-text-primary-color: #fbfbfe !important;
 }    
 
+/* фиксы новых версий*/
+.outer-wrapper {
+  display: block !important;
+}
+/* фиксы новых версий*/
+
 body {
     --newtab-background-color-secondary: transparent !important;
     --newtab-element-hover-color: var(--button-active-bgcolor) !important;
@@ -14,7 +21,7 @@ body {
     --newtab-element-secondary-active-color: var(--button-active-bgcolor) !important;
     --newtab-border-color: color-mix(in srgb, var(--newtab-background-color) 88%, var(--newtab-wordmark-color)) !important;
     --newtab-primary-element-text-color: var(--newtab-text-primary-color) !important;
-    background-image: url("./img/img.png") !important;
+    background-image: url("img/img.png") !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
     background-size: cover !important;
@@ -40,7 +47,7 @@ main {
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5) !important;
 }
 	
-	.top-site-outer .tile {
+.top-site-outer .tile {
 		width: 90px !important;
 		height: 90px !important;
     border-radius: 17.544% !important;
@@ -48,7 +55,9 @@ main {
     background: var(--newtab-pinnedsites-background) !important;
     filter: saturate(140%) !important;
     backdrop-filter: blur(33px);
-    }
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+    transition: all 0.1s !important;
+}
 
 	/*
 	.top-site-outer .title {
@@ -69,7 +78,11 @@ main {
 		width: 100% !important;
 		height: 100% !important;
 		border-radius: 17.544% !important;
-		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+		transition: all 0.1s !important;
+	}
+	
+	.top-site-outer .tile .icon-wrapper:active {
+box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.17) !important;
 	}
 
 	.top-site-outer .tile .icon-wrapper::before {
@@ -83,15 +96,15 @@ main {
 
 .icon.icon-settings {
   opacity: 80% !important;
-  transform: scale(1.4) !important;
+  transform: scale(1.7) !important;
   fill: var(--newtab-text-primary-color) !important;
-  background-image: url("icons/settings-newtab.svg") !important;
+  background-image: url("icons/settings.svg") !important;
   transition: all 0.05s !important;
 }
 
 .icon.icon-settings:active {
 background-color: transparent !important;
-filter: invert(20%) !important;
+fill: var(--text-unselected) !important;
 }
 
 /*Затемнение иконок*/
@@ -130,9 +143,26 @@ filter: invert(20%) !important;
 --newtab-element-active-color: #ffffff1e !important;
 }
 
+@media (height < 700px) {
 .personalize-button {
   padding: 10px !important;
   transition: all 0.05s !important;
+  top:auto !important;
+  bottom: 25px !important;
+  right: 25px !important;
+  position: fixed !important;
+  }
+}
+
+@media (height >= 700px) {
+.personalize-button {
+  padding: 10px !important;
+  transition: all 0.05s !important;
+  top:auto !important;
+  bottom: 25px !important;
+  right: 25px !important;
+  position: fixed !important;
+  }
 }
 
 /* .search-inner-wrapper { display: none !important; } */
@@ -244,13 +274,14 @@ button, input {
   box-shadow: 6px 6px 8px rgb(0 0 0 / 15%) !important; 
   background: url("icons/down.svg") right no-repeat !important;
   background-origin: content-box !important;
-  background-color: #ffffff1e !important;
+  background-color: var(--var-static) !important;
   border-radius: 6px !important;
   transition: all 0.05s !important;
+  fill: var(--newtab-text-primary-color) !important;
 }
 
 .home-section .section .selector:hover{
-background-color: #ffffff34 !important;
+background-color: var(--var-hover) !important;
 }
 
 .home-section .external-link {
@@ -258,13 +289,16 @@ background-color: #ffffff34 !important;
   transition: all 0.05s !important;
   color: var(--text-unselected) !important;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5) !important;
-  fill: var(--text-unselected) !important;
+  fill: color-mix(in srgb, currentColor 100%, transparent) !important;
 }
 
 
 .toggle-button {
   transform: scale(1.4) !important;
   transition: all 0.05s !important;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.15), inset 0 -1px 6px rgba(0,0,0,0.15), inset 1px 0px 6px rgba(0,0,0,0.15) !important;
+  border: none !important;
+  padding: 1px !important;
 }
 
 /* переключатели */
@@ -289,34 +323,46 @@ background-color: #ffffff34 !important;
   box-shadow: 0 0px 15px rgb(0 0 0 / 15%) !important;
   font-weight: unset !important;
   border-radius: 10px !important;
-  background-color: #ffffff1e !important;
+  background-color: var(--var-static) !important;
   transition: all 0.05s !important;
+}
+
+.customize-menu .close-button:hover {
+  background-color: var(--var-hover) !important;
+}
+
+.customize-menu .close-button:active {
+  background-color: var(--var-active) !important;
 }
 
 .home-section .section .sponsored-checkbox:checked {
   -moz-context-properties: fill;
   background: url("icons/checkbox.svg") center no-repeat !important;
   background-color: #2186fb !important;
+  fill: #fbfbfe !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -1px 3px rgba(0,0,0,0.15) !important;
 }
 
 .home-section .section .sponsored-checkbox:checked:hover {
   -moz-context-properties: fill;
   background: url("icons/checkbox.svg") center no-repeat !important;
   background-color: #429aff !important;
+  fill: #fbfbfe !important;
 }
 
 .home-section .section .sponsored-checkbox:checked:active {
   -moz-context-properties: fill;
   background: url("icons/checkbox.svg") center no-repeat !important;
   background-color: #006be5 !important;
+  fill: #fbfbfe !important;
+}
+
+.home-section .section .sponsored-checkbox{
+box-shadow: inset 0 1px 3px rgba(0,0,0,0.15) !important;
 }
    
 .home-section .section .sponsored-checkbox:hover {
   background-color: #ffffff34 !important;
-}
-
-.customize-menu .close-button:hover {
-  background-color: #ffffff30 !important;
 }
 
 .home-section .external-link:hover{
@@ -341,18 +387,39 @@ fill: var(--text-selected) !important;
     height: auto !important;
 }
 
+@media (height >= 309px) {
+.search-wrapper .search-handoff-button, .search-wrapper input {
+padding-inline-start: 0px !important;
+padding-inline-end: 0px !important;
+}
+}
+      
+@media (height >= 308px) {
+.search-wrapper .search-handoff-button, .search-wrapper input {
+padding-inline-start: 40px !important;
+padding-inline-end: 0px !important;
+}
+}
+
+@media (height < 300px) {
+.search-wrapper .search-handoff-button, .search-wrapper input {
+padding-inline-start: 50px !important;
+padding-inline-end: 0px !important;
+}
+}
+
 .search-handoff-button .fake-editable {
   display: none !important;
+}
+
+.search-handoff-button .fake-caret {
+color: black !important;
+opacity: 54% !important;
 }
 
 .search-handoff-button .fake-textbox { 
 text-align: center !important;
 padding-inline-start: 0px !important;
-}
-
-.search-wrapper .search-handoff-button, .search-wrapper input {
-padding-inline-start: 0px !important;
-padding-inline-end: 0px !important;
 }
 
 body {
@@ -471,20 +538,17 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     }
     
  /* Добавляет выделение при наведение в последних действиях*/  
-   
-.top-site-outer:is(:focus-within) .tile, .card-outer:is(.active,:focus-within) .card{
-    background-color: transparent !important;
-    box-shadow: none !important;
-    }
-    
-.compact-cards .card-outer .card-details {
-  padding: 12px 4px !important;
-}
-    
+           
 .top-site-outer:is(:focus-within) .title, .card-outer:is(.active,:focus-within) .card{
     text-decoration: unset !important;
-    }
-     
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+ 
+.compact-cards .card-outer .card-details {
+  padding: 12px 4px !important;
+} 
+ 
 .top-site-outer .context-menu-button {
     background-color: transparent !important;
     border-radius: 50% !important;
@@ -505,6 +569,16 @@ body:not(.inline-onboarding) .fixed-search .search-wrapper {
     fill: var(--newtab-text-primary-color) !important;
     }
     
+.top-site-outer.placeholder.add-button .tile .icon-wrapper{
+  transform: scale(0.4);
+  box-shadow: none;
+  background-image: url("icons/add.svg") !important;
+  fill: rgba(255, 255, 255, 0.6) !important;
+}
+
+.top-site-outer.placeholder.add-button .tile .icon-wrapper:active{
+box-shadow: none !important;
+}
     
 /* -------------------------- Последние действия --------------------------- */
     
@@ -552,7 +626,7 @@ color: var(--text-selected) !important;
   height: 132px !important;
   border-radius: 15px 15px 15px 15px !important;
   backdrop-filter: blur(33px);
-  background-color: rgba(20, 25, 40, 0.2)  !important;
+  background-color: color-mix(in srgb, white 14%, transparent) !important;
   transition: all 0.2s !important;
 }
 
@@ -573,7 +647,7 @@ color: var(--text-selected) !important;
 */
 .compact-cards .card-outer .card-preview-image-outer:hover{
  /* box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.17) !important;*/
-  background-color: rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 10px 15px rgb(0 0 0 / 20%), inset 0 0 0 2000px rgba(0, 0, 0, 0.17) !important;
 }
 
 .card-outer .card-preview-image-outer .card-preview-image.loaded:hover {
@@ -645,9 +719,13 @@ color: var(--text-selected) !important;
     backdrop-filter: blur(33px);
     font-family: -apple-system !important;
     font-weight: normal !important;
-    box-shadow: 0 0px 15px rgb(0 0 0 / 35%) !important;
+    box-shadow: 0 0px 15px rgb(0 0 0 / 20%) !important;
     height: 200px !important;
     border-color: transparent !important;
+}
+
+.sections-list .section-empty-state .empty-state .empty-state-message {
+  font-size: 16px !important;
 }
 
 /* Рекомендации */
@@ -660,6 +738,10 @@ color: var(--text-selected) !important;
     height: auto !important;
     border-radius: 0 0 16px 16px !important;
     transition: all 0.2s !important;
+}
+
+.ds-card.active header, .ds-card:focus-within header, .ds-card:hover header {
+  color: unset !important;
 }
 
 .ds-onboarding-container:not(.placeholder), .ds-card-grid .ds-card:not(.placeholder) {
@@ -707,8 +789,39 @@ color: var(--text-selected) !important;
 
 
 /* Рекомендации */
+/* фикс пакета */
+.ds-card.active .card-stp-button-hover-background, .ds-card:focus-within .card-stp-button-hover-background, .ds-card:hover .card-stp-button-hover-background {
+  transition-duration: 0.2s !important;
+  border-radius: 16px 16px 0 0 !important;
+  background-color: transparent !important;
+}
 
+.ds-card .card-stp-button-hover-background .card-stp-button {
+margin-inline-end: -22px !important;
+border-radius: 8px !important;
+box-shadow: 0 10px 15px rgb(0 0 0 / 20%) !important;
+}
+
+.ds-card .card-stp-button-hover-background .context-menu-button {
+  position: inherit !important;
+  top: -27px !important;
+  right: -23px !important;
+  }
+  
+.ds-card .card-stp-button-hover-background .context-menu {
+  margin-inline-start: 33.5px !important;
+  top: -8.8px !important;
+}
+
+.ds-card.last-item .card-stp-button-hover-background .context-menu {
+  margin-inline-end: -245px !important;
+}
+/* фикс пакета */
 /* Режим редактирования */
+
+.edit-topsites-wrapper .top-site-inner > .top-site-button > .tile {
+  border: none !important;
+}
 
 .a11y-link-button {
   color: var(--text-unselected) !important;
@@ -745,7 +858,7 @@ color: var(--text-selected) !important;
   border-color: transparent !important;
   box-shadow: 0 10px 15px rgb(0 0 0 / 20%) !important;
   border-radius: 8px !important;
-  transition: all 0.05s !important;
+  transition: all 0.1s !important;
   outline-color: transparent !important;
 }
 
@@ -768,7 +881,7 @@ color: var(--text-selected) !important;
 
 
 .button, .actions button {
-  background-color: #ffffff1e !important;
+  background-color: var(--var-static) !important;
   border-color: transparent !important;
   border-radius: 8px !important;
   box-shadow: 0 0px 15px rgb(0 0 0 / 15%) !important;  
@@ -776,11 +889,11 @@ color: var(--text-selected) !important;
 }
 
 .button, .actions button:hover{
-background-color: #ffffff34 !important;
+background-color: var(--var-hover) !important;
 }
 
 .button, .actions button:active{
-background-color: #ffffff3f !important;
+background-color: var(--var-active) !important;
 }
 
 .modal-overlay {
@@ -788,12 +901,15 @@ background-color: #ffffff3f !important;
   backdrop-filter: blur(33px) !important;
 }
 
-
 :root{
   --newtab-pinnedsites-background: color-mix(in srgb, white 14%, transparent) ;
   --newtab-pinnedsites-position-top: 0px ;
   --text-selected: rgba(225, 225, 225, 1);
-  --text-unselected: rgba(176, 176, 176, 1);
-}
+  --text-unselected: color-mix(in srgb, currentColor 69%, transparent) !important;
+  --mac-blue: rgb(0, 123, 225) !important;
+  --var-hover: #ffffff34 !important;
+  --var-active: #ffffff3f !important;
+  --var-static: #ffffff26 !important;
+  }
 }
 

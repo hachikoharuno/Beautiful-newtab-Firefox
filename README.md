@@ -3,10 +3,10 @@ There are a lot of beautiful Firefox themes available online, but few of them ch
 
 ### Preview
 ##### Dark mode
-![Preview](preview/preview.png)
+![Preview](preview/preview.jpeg)
 
 ##### Light mode
-![Preview](preview/preview-light.png)
+![Preview](preview/preview-light.jpeg)
 
 ### Requirements!
 The position of the `svg.context-properties.content.enabled` parameter in about:config must be `true`
